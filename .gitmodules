@@ -1,0 +1,3 @@
+[submodule "packages/glennraya/xendivel"]
+	path = packages/glennraya/xendivel
+	url = https://github.com/glennraya/xendivel
