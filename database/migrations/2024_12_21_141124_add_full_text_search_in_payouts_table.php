@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('payouts', function (Blueprint $table) {
-            $table->fullText(['channel_code', 'account_number', 'account_holder_name']);
-        });
+        if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+            Schema::table('payouts', function (Blueprint $table) {
+                $table->fullText(['channel_code', 'account_number', 'account_holder_name']);
+            });
+        }
     }
 
     /**
@@ -21,8 +23,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('payouts', function (Blueprint $table) {
-            $table->dropFullText(['channel_code', 'account_number', 'account_holder_name']);
-        });
+        if (Schema::getConnection()->getDriverName() !== 'sqlite') {
+            Schema::table('payouts', function (Blueprint $table) {
+                $table->dropFullText(['channel_code', 'account_number', 'account_holder_name']);
+            });
+        }
     }
 };
